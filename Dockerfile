@@ -23,5 +23,5 @@ RUN useradd -m ${CHEFUSER} -s /bin/bash && \
 
 EXPOSE 443 22
 
-ENTRYPOINT []
-CMD ["docker-entrypoint.sh"]
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["/bin/bash"]

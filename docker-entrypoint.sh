@@ -50,16 +50,17 @@ verifychef() {
 	if [[ $? == 0 ]]; then
 		echo "ChefDK Verification completed"
 		touch /.chefdk
-		su - $CHEFUSER -s /bin/bash
+		#/bin/bash
 	fi
 }
 
 if [[ -f /.chefdk ]]; then
 	echo "ChefDK has been configured"
-	su - $CHEFUSER -s /bin/bash
-	exit 0
+	#/bin/bash
 else
-	echo -e "The ChefDK has not yet been installed.\n\n Starting the Installation...\n\n"
+	echo -e "The ChefDK has not yet been installed.\n\n"
+	echo -e "Starting the Installation...\n\n"
+	sleep 5;
 	installchefdk;
 	verifychef;
 fi
