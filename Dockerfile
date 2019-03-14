@@ -8,8 +8,6 @@ LABEL maintainer="<marcelo.frneves@gmail.com>"
 ENV DEBIAN_FRONTEND noninteractive
 ENV CHEFUSER=chefadmin
 ENV	CHEFPASS="changeme!!"
-ENV CHEFDK=false
-ENV CHEFCHECK_INSTALL=false
 
 RUN apt-get update -y && \
 	apt-get install wget sudo -y --no-install-recommends
