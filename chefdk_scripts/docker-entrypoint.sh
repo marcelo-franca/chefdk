@@ -22,6 +22,8 @@
 #		    - Adding statement to check if chefdk has been successfully installed.
 #    v1.3 2019-03-15, Marcelo Franca:
 #				- Adding statement to send dpkg output to /dev/null
+#       - Arranging shell scripts into directories and adding statements
+#         dockerfiles
 # Licence: Apache.
 #
 installchefdk() {
