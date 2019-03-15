@@ -18,30 +18,20 @@
 #       - Creating a feature to get download of Chef Development Kit
 #    v1.1 2019-03-13, Marcelo Franca:
 #		    - Organizing statements of install and check chefdk into functions
-#    v1.1 2019-03-14, Marcelo Franca:
+#    v1.2 2019-03-14, Marcelo Franca:
 #		    - Adding statement to check if chefdk has been successfully installed.
+#    v1.3 2019-03-15, Marcelo Franca:
+#				- Adding statement to send dpkg output to /dev/null
 # Licence: Apache.
 #
-sha256="83b96eb28891d3f89d58c3ffefa61c0d8aa605911c3b90d8c5cb92a75602e56d"
-local_file="/tmp/chefdk_3.8.14-1_amd64.deb"
-chefdk_url="https://packages.chef.io/files/stable/chefdk/3.8.14/ubuntu/18.04/chefdk_3.8.14-1_amd64.deb"
-
 installchefdk() {
-	if [[ $sha256 == $(wget --no-check-certificate $chefdk_url -O $local_file && \
-		sha256sum $local_file | awk '{print $1}') ]]; then
-
-		dpkg -i $local_file
-		if [[ $? == 0 ]]; then
-			echo "Installation has been completed!"
-		else
-			echo "The installation failure"
-			exit 2
-		fi
+	dpkg -i $LOCAL_FILE > /dev/null 2>&1
+	if [[ $? == 0 ]]; then
+		echo "Installation has been completed!"
+		rm -f $LOCAL_FILE
 	else
-		echo "Download failure. The sha256 code do not been match!!";
-		echo "sha256 code required: $sha256";
-		echo "sha256 code received: $(sha256sum $local_file | awk '{print $1}')";
-		echo "Please. Try again";
+		echo "The installation failure"
+		exit 2
 	fi
 }
 
@@ -50,17 +40,18 @@ verifychef() {
 	if [[ $? == 0 ]]; then
 		echo "ChefDK Verification completed"
 		touch /.chefdk
-		#/bin/bash
+		/bin/bash
 	fi
 }
 
 if [[ -f /.chefdk ]]; then
 	echo "ChefDK has been configured"
-	#/bin/bash
+	/bin/bash
 else
 	echo -e "The ChefDK has not yet been installed.\n\n"
 	echo -e "Starting the Installation...\n\n"
 	sleep 5;
 	installchefdk;
+	echo -e "Now we will start the ChefDK Verification"
 	verifychef;
 fi
