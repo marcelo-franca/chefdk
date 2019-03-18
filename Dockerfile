@@ -24,7 +24,6 @@ RUN useradd -m ${CHEFUSER} -s /bin/bash && \
     (echo "${CHEFPASS}" ; echo "${CHEFPASS}") \
     | passwd ${CHEFUSER} && gpasswd -a ${CHEFUSER} sudo
 
-
 EXPOSE 443 22
 
 ENTRYPOINT []

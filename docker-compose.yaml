@@ -1,7 +1,7 @@
 version: "3.5"
 
 services:
-  chefserver:
+  chef-workstation:
     container_name: chef-workstation
     build:
       context: .
