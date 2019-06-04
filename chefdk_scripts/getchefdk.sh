@@ -15,11 +15,11 @@
 #    v1.0 2019-03-15, Marcelo Franca:
 #       - Arranging shell script "docker-entrypoint.sh" to other script
 #         named "getchefdk.sh". This script can only download chefdk
+#    v1.0 2019-06-04, Marcelo Franca:
+#       - Update chefdk version.
 
-sha256="83b96eb28891d3f89d58c3ffefa61c0d8aa605911c3b90d8c5cb92a75602e56d"
-LOCAL_FILE="/tmp/chefdk_3.8.14-1_amd64.deb"
-chefdk_url="https://packages.chef.io/files/stable/chefdk/3.8.14\
-/ubuntu/18.04/chefdk_3.8.14-1_amd64.deb"
+sha256="4ca4eb63b5a71e90bba7e91539bc5ecbad596a8e9daaadb0d53bb2219af961c4"
+chefdk_url="https://packages.chef.io/files/stable/chefdk/4.0.60/ubuntu/18.04/chefdk_4.0.60-1_amd64.deb"
 
 if [[ $sha256 == $(wget --no-check-certificate $chefdk_url -O $LOCAL_FILE && \
   sha256sum $LOCAL_FILE | awk '{print $1}') ]]; then
