@@ -21,13 +21,15 @@
 #    v1.2 2019-03-14, Marcelo Franca:
 #		    - Adding statement to check if chefdk has been successfully installed.
 #    v1.3 2019-03-15, Marcelo Franca:
-#				- Adding statement to send dpkg output to /dev/null
-#       - Arranging shell scripts into directories and adding statements
-#         dockerfiles
+#		    - Adding statement to send dpkg output to /dev/null
+#           - Arranging shell scripts into directories and adding statements
+#             dockerfiles
+#    v1.3 2019-06-04, Marcelo Franca:
+#			- Adding "chef-license" flag in verifychef function
 # Licence: Apache.
 #
 installchefdk() {
-	dpkg -i $LOCAL_FILE > /dev/null 2>&1
+	dpkg -i $LOCAL_FILE
 	if [[ $? == 0 ]]; then
 		echo "Installation has been completed!"
 		rm -f $LOCAL_FILE
@@ -38,7 +40,7 @@ installchefdk() {
 }
 
 verifychef() {
-	/usr/bin/chef verify
+	/usr/bin/chef verify --chef-license accept
 	if [[ $? == 0 ]]; then
 		echo "ChefDK Verification completed"
 		touch /.chefdk

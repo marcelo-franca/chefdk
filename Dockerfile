@@ -8,11 +8,12 @@ LABEL maintainer="<marcelo.frneves@gmail.com>"
 ENV DEBIAN_FRONTEND noninteractive
 ENV CHEFUSER=chefadmin
 ENV	CHEFPASS="changeme!!"
-ENV LOCAL_FILE="/tmp/chefdk_3.8.14-1_amd64.deb"
+ENV LOCAL_FILE="/tmp/chefdk.deb"
 ENV LOCAL_SCRIPTS="/usr/local/src/chefdk"
 ENV PATH="$LOCAL_SCRIPTS/:$PATH"
 RUN apt-get update -y && \
-	apt-get install wget sudo -y --no-install-recommends
+	apt-get install wget sudo iputils-ping net-tools -y --no-install-recommends && \
+    apt-get clean
 
 ADD chefdk_scripts $LOCAL_SCRIPTS
 

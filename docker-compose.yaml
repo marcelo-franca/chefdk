@@ -16,6 +16,16 @@ services:
     restart: always
     stdin_open: true
     tty: true
+    extra_hosts:
+      - "chef-server.mitlabs.com.br:189.33.92.10"
+      - "homolog.mitlabs.com.br:189.33.92.11"
+      - "testing.mitlabs.com.br:189.33.92.12"
+      - "balancer.mitlabs.com.br:189.33.92.13"
+      - "webserver01.mitlabs.com.br:189.33.92.14"
+      - "webserver02.mitlabs.com.br:189.33.92.15"
+      - "database.mitlabs.com.br:189.33.92.16"
+    volumes:
+      - "/home/marcelo/Documentos/Conhecimento/Knowledge Base/DevOps/Chef/lab-4linux:/root/chef-repo"
 networks:
   mitlabs:
     name: mitlabs
