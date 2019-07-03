@@ -25,7 +25,7 @@ services:
       - "webserver02.mitlabs.com.br:189.33.92.15"
       - "database.mitlabs.com.br:189.33.92.16"
     volumes:
-      - "/home/marcelo/Documentos/Conhecimento/Knowledge Base/DevOps/Chef/lab-4linux:/root/chef-repo"
+      - "$PWD:/root/chef-repo"
 networks:
   mitlabs:
     name: mitlabs
